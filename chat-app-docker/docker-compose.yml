@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  postgresql:
+    image: postgres
+    volumes:
+        - ./db:/var/lib/postgresql
+        - ./build:/build/
+        - ./sql:/docker-entrypoint-initdb.d/
+        - ./log/postgre:/var/log/postgresql/
+    ports:
+      - 5432:5432
+    environment:
+        - POSTGRES_PASSWORD=postgres
+    container_name: chat-app-postgres
+#   restart: always
+#   restart: always
