@@ -2,7 +2,7 @@ import connection from '../connection'
 
 const { Sequelize } = connection
 
-const Message = connection.define('user', {
+const Message = connection.define('message', {
   text: Sequelize.STRING,
   user: Sequelize.JSON,
   _id: {
@@ -23,9 +23,10 @@ Message.createMessage = (text, sender, receiver) => {
 
   return Promise.all([
     Message.create(record),
-    connection.models.conversation.findOrCreateConversation
+    connection.models.conversation.findOrCreateConversation(sender.id, receiver.id)
   ])
   .then(([message, conversation]) => message.setConversation(conversation))
+  .catch(console.error)
 }
 
 export default Message

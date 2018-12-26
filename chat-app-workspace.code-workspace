@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "chat-app-server"
+		},
+		{
+			"path": "chat-app-docker"
+		},
+		{
+			"path": "chat-app"
+		}
+	],
+	"settings": {}
+}

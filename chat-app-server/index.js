@@ -1,13 +1,16 @@
 import { createServer } from 'http'
 import SocketIO from 'socket.io'
-import { connection, models } from './db'
+import db from './db'
 
-const server = createServer.listen(process.env.SERVER_PORT || 3000)
+const { connection, models } = db 
+
+const server = createServer()
+server.listen(process.env.SERVER_PORT || 3000)
 const io = SocketIO(server)
 
 const { Conversation, User, Message } = models
 
-connection.sync({ logging: false, force: process.env.DB_FORCE || true })
+connection.sync({ logging: true, force: process.env.DB_FORCE || true })
 
 const mobileSockets = {}
 

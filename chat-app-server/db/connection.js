@@ -10,7 +10,7 @@ const config = {
   host: process.env.DB_HOST || 'localhost',
   dialect: 'postgres',
   setup: true,
-  logging: m => debug(m)
+  logging: m => debugF(m)
 }
 
 const connection = new Sequelize(config)
